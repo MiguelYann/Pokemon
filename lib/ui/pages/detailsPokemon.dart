@@ -18,6 +18,7 @@ class DetailsPokemon extends StatelessWidget {
       ),
       body: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Container(
               child: Image.network(
@@ -33,7 +34,9 @@ class DetailsPokemon extends StatelessWidget {
                 Text(pokemonItem.height.toString())
               ],
             ),
-            Card(
+            Container(
+              height: 200,
+              color: Colors.blue,
               child: Text(pokemonItem.description),
             )
           ],

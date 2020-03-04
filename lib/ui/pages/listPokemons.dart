@@ -12,8 +12,7 @@ class ListPokemon extends StatefulWidget {
         height: 12.0,
         weight: 34,
         type: "EAU",
-        urlImage:
-            "https://www.pokepedia.fr/images/thumb/2/24/Tortank-RFVF.png/500px-Tortank-RFVF.png"),
+        urlImage: "pokemon6.jpeg"),
     new Pokemon(
         id: 2,
         name: 'Fushigidane',
@@ -21,8 +20,7 @@ class ListPokemon extends StatefulWidget {
         height: 12.0,
         weight: 34,
         type: "AQUA",
-        urlImage:
-            "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png"),
+        urlImage: "pokemon2.png"),
     new Pokemon(
         id: 3,
         name: 'Florizarre',
@@ -30,8 +28,7 @@ class ListPokemon extends StatefulWidget {
         height: 12.0,
         weight: 34,
         type: "Plante",
-        urlImage:
-            "https://assets.pokemon.com/assets/cms2/img/pokedex/full/003.png"),
+        urlImage: "pokemon3.jpeg"),
     new Pokemon(
         id: 4,
         name: 'Charmander',
@@ -39,8 +36,7 @@ class ListPokemon extends StatefulWidget {
         height: 12.0,
         weight: 34,
         type: "FEU",
-        urlImage:
-            "https://www.pokepedia.fr/images/thumb/8/89/Salamèche-RFVF.png/250px-Salamèche-RFVF.png"),
+        urlImage: "pokemon4.jpg"),
     new Pokemon(
         id: 5,
         name: 'Pikachu',
@@ -48,8 +44,7 @@ class ListPokemon extends StatefulWidget {
         height: 12.0,
         weight: 34,
         type: "Electric",
-        urlImage:
-            "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png"),
+        urlImage: "pokedex.png"),
   ];
 
   @override
@@ -61,29 +56,40 @@ class _ListPokemonState extends State<ListPokemon> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Pokemons"),
-        ),
-        body: Container(
-          child: Column(
-              children: widget.pokemons
-                  .map((pokemon) => InkWell(
-                      onTap: () {
-                        Navigator.pushNamed(context, DetailsPokemon.routeName,
-                            arguments: {"pokemon": pokemon});
-                      },
-                      child: Container(
-                          height: 100,
-                          width: 200,
-                          child: Center(
-                            child: Row(
-                              children: <Widget>[
-                                Image.network(pokemon.urlImage),
-                                Text("${pokemon.id}#${pokemon.name}"),
-                              ],
-                            ),
-                          ))))
-                  .toList()),
-        ));
+      appBar: AppBar(
+        title: Text("Pokemons"),
+      ),
+      body: ListView.separated(
+        itemBuilder: (BuildContext context, int index) {
+          return InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, DetailsPokemon.routeName,
+                  arguments: {"pokemon": widget.pokemons[index]});
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Container(
+                  height: 100,
+                  child: Image(
+                    image: AssetImage("${widget.pokemons[index].urlImage}"),
+                  ),
+                ),
+                Text(
+                  "#${index}${widget.pokemons[index].name}",
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.bold),
+                ),
+                Icon(Icons.navigate_next)
+              ],
+            ),
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return Divider();
+        },
+        itemCount: widget.pokemons.length,
+      ),
+    );
   }
 }
