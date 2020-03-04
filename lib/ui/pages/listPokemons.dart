@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon/data/models/Pokemon.dart';
 import 'package:pokemon/ui/pages/detailsPokemon.dart';
+import 'package:pokemon/ui/ressources/widgets/TextCustom.dart';
 
 class ListPokemon extends StatefulWidget {
   static const String routeName = "/pokemons";
@@ -12,7 +13,7 @@ class ListPokemon extends StatefulWidget {
         height: 12.0,
         weight: 34,
         type: "EAU",
-        urlImage: "pokemon6.jpeg"),
+        urlImage: "assets/images/pokemon6.jpeg"),
     new Pokemon(
         id: 2,
         name: 'Fushigidane',
@@ -20,7 +21,7 @@ class ListPokemon extends StatefulWidget {
         height: 12.0,
         weight: 34,
         type: "AQUA",
-        urlImage: "pokemon2.png"),
+        urlImage: "assets/images/pokemon2.png"),
     new Pokemon(
         id: 3,
         name: 'Florizarre',
@@ -28,7 +29,7 @@ class ListPokemon extends StatefulWidget {
         height: 12.0,
         weight: 34,
         type: "Plante",
-        urlImage: "pokemon3.jpeg"),
+        urlImage: "assets/images/pokemon3.jpeg"),
     new Pokemon(
         id: 4,
         name: 'Charmander',
@@ -36,7 +37,7 @@ class ListPokemon extends StatefulWidget {
         height: 12.0,
         weight: 34,
         type: "FEU",
-        urlImage: "pokemon4.jpg"),
+        urlImage: "assets/images/pokemon4.jpg"),
     new Pokemon(
         id: 5,
         name: 'Pikachu',
@@ -44,7 +45,7 @@ class ListPokemon extends StatefulWidget {
         height: 12.0,
         weight: 34,
         type: "Electric",
-        urlImage: "pokedex.png"),
+        urlImage: "assets/images/pokedex.png"),
   ];
 
   @override
@@ -57,7 +58,9 @@ class _ListPokemonState extends State<ListPokemon> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pokemons"),
+        title: Center(
+            child: TextCustom("Pokemons", police: "OpenSansCondensed",)),
+        backgroundColor: Colors.green,
       ),
       body: ListView.separated(
         itemBuilder: (BuildContext context, int index) {
@@ -76,7 +79,7 @@ class _ListPokemonState extends State<ListPokemon> {
                   ),
                 ),
                 Text(
-                  "#${index}${widget.pokemons[index].name}",
+                  "#$index${widget.pokemons[index].name}",
                   style: TextStyle(
                       color: Colors.blue, fontWeight: FontWeight.bold),
                 ),

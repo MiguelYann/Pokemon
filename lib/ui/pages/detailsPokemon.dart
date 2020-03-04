@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokemon/data/models/Pokemon.dart';
+import 'package:pokemon/ui/ressources/widgets/TextCustom.dart';
 
 class DetailsPokemon extends StatelessWidget {
   static const String routeName = "/detailsPokemons";
@@ -14,33 +15,76 @@ class DetailsPokemon extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(pokemonItem.name),
+        title: TextCustom(pokemonItem.name),
+        backgroundColor: Colors.green,
       ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            Container(
-              child: Image.network(
-                pokemonItem.urlImage,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Text(pokemonItem.name),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: ListView(
+        children: <Widget>[
+          Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(pokemonItem.weight.toString()),
-                Text(pokemonItem.height.toString())
+                Container(
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height / 2,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width / 3,
+                  child: Image(
+                    image: AssetImage('${pokemonItem.urlImage}'),
+                  ),
+                ),
+                Text(pokemonItem.name),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Container(
+                      height: 50,
+                      width: 100,
+                      color: Colors.green,
+                      child: Card(
+                        child: Column(children: <Widget>[
+                          Text('Height'),
+                          Text(pokemonItem.height.toString()),
+                        ]),
+                      ),
+                    ),
+                    Container(
+                      height: 50,
+                      width: 100,
+                      color: Colors.green,
+                      child: Card(
+                        child: Column(children: <Widget>[
+                          Text('Weight'),
+                          Text(pokemonItem.weight.toString()),
+                        ]),
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  child: Card(
+                    child: Container(
+                      height: MediaQuery
+                          .of(context)
+                          .size
+                          .height / 6,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .height / 3,
+                      child: Center(child: Text(pokemonItem.description)),
+                      color: Colors.white,
+                    ),
+                  ),
+                )
               ],
             ),
-            Container(
-              height: 200,
-              color: Colors.blue,
-              child: Text(pokemonItem.description),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
